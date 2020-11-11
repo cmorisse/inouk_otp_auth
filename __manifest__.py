@@ -6,7 +6,7 @@
     "summary": """
         Add 2FA via OTP. 
         Logging into the system requires additional key generated on your mobile device.
-        This is a Fork of Ventor Tech 'two_factor_otp_auth' addon.
+        This is a fork of Ventor Tech 'two_factor_otp_auth' addon.
         """,
     "author": "VentorTech, Cyril MORISSE",
     "category": "Uncategorized",
@@ -28,8 +28,8 @@
     ],
     "external_dependencies": {
         "python": [
-            "qrcode",
-            "pyotp",
+            "qrcode",  # qrcode==6.1
+            "pyotp",  # pyotp==2.4.1
         ],
     },
 }
