@@ -1,0 +1,33 @@
+*.pyc
+bin/
+etc/
+parts/
+py3x/
+buildit-plugins/
+buildit-plugins/ikb_plugins
+buildit.json
+buildit.yaml
+buildit.yml
+
+# For buildout
+.installed.cfg
+bin/
+buildout.cfg
+develop-eggs/
+downloads/
+eggs/
+etc/
+parts/
+py27/
+py3x/
+/upgrade.py
+.idea/
+sandbox/
+docker/
+
+ipython/
+.vscode
+
+# Traefik
+acme.json
+traefik/

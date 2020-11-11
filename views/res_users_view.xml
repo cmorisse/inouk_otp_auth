@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_users_form_inherit_2fa" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.2fa</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page string="2 Factor Auth" name="page_2FA" >
+                    <group col="4" colspan="4">
+                            <field name="enable_2fa" string="Enable 2FA" colspan="4" />
+                            <span colspan="4">
+                                <button type="object" name="btn_generate_new_secret" 
+                                        string="(re) Generate Secret"
+                                        class="btn-warning oe_inline"
+                                        attrs="{'invisible': [('enable_2fa', '=', False)]}" 
+                                        style="margin-right: 15px;"
+                                        colspan="1"
+                                        groups="inouk_otp_auth.mass_change_2fa_for_users" />
+                                <button type="object" name="btn_generate_qr_code" 
+                                        string="Regenerate QR Code"
+                                        class="btn-warning oe_inline"
+                                        attrs="{'invisible': ['|',('enable_2fa', '=', False),('qr_image_2fa', '=', False)]}" 
+                                        colspan="1"
+                                        groups="inouk_otp_auth.mass_change_2fa_for_users" />
+
+                            </span>
+                            <field name="secret_code_2fa"
+                                string="OTP Secret"
+                                attrs="{'invisible': ['|',('enable_2fa', '=', False),('qr_image_2fa', '=', False)]}" 
+                                readonly="0"
+                                colspan="4"
+                                groups="inouk_otp_auth.mass_change_2fa_for_users" />
+
+                            <field name="qr_image_2fa"
+                                widget="image"
+                                string="OTP QR Code"
+                                attrs="{'invisible': ['|',('enable_2fa', '=', False),('qr_image_2fa', '=', False)]}"
+                                colspan="3"
+                                readonly="1"
+                                groups="inouk_otp_auth.mass_change_2fa_for_users" />
+                            <field name="otp_uri"                                 
+                                    groups="inouk_otp_auth.mass_change_2fa_for_users" 
+                                   attrs="{'invisible': ['|',('enable_2fa', '=', False),('qr_image_2fa', '=', False)]}" 
+                                   colspan="4" />
+                            <field name="show_qr_code_at_next_login"                                 
+                                   groups="inouk_otp_auth.mass_change_2fa_for_users" 
+                                   attrs="{'invisible': ['|',('enable_2fa', '=', False),('qr_image_2fa', '=', False)]}" 
+                                   colspan="4" />
+
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_users_tree_inherit_2fa" model="ir.ui.view">
+        <field name="name">res.users.tree.inherit.2fa</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_tree"/>
+        <field name="arch" type="xml">
+            <field name="login_date" position="after">
+                <field name="enable_2fa"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
